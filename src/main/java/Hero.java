@@ -1,32 +1,35 @@
-
+import java.util.Random;
+import java.util.random.*;
 public class Hero implements InterfacePersonnages {
-	int attackPoints;
-	int defensePoints;
+	int attackRate;
+	int defenseRate;
 	int speedPoints;
+	int lifePoints;
 	String dialogue;
 	
 	
-	Hero(int attackPoints, int defensePoints, int speedPoints, String dialogue){ 
-		this.attackPoints = attackPoints;
-		this.defensePoints = defensePoints;
+	Hero(int attackRate, int defenseRate, int speedPoints, int lifePoints, String dialogue){ 
+		this.attackRate = attackRate;
+		this.defenseRate = defenseRate;
 		this.speedPoints = speedPoints;
+		this.lifePoints = lifePoints;
 		this.dialogue = dialogue;
 	}
 	
-	public int getAttackPoints() {
-		return attackPoints;
+	public int getAttackRate() {
+		return attackRate;
 	}
 
-	public void setAttackPoints(int attackPoints) {
-		this.attackPoints = attackPoints;
+	public void setAttackRate(int attackRate) {
+		this.attackRate= attackRate;
 	}
 	
-	public int getDefensePoints() {
-		return defensePoints;
+	public int getDefenseRate() {
+		return defenseRate;
 	}
 
-	public void setDefensePoints(int defensePoints) {
-		this.defensePoints = defensePoints;
+	public void setDefenseRate(int defenseRate) {
+		this.defenseRate = defenseRate;
 	}
 
 	public int getSpeedPoints() {
@@ -44,5 +47,28 @@ public class Hero implements InterfacePersonnages {
 	public void setDialogue(String dialogue) {
 		this.dialogue = dialogue;
 	}
+	
+	public int getLifePoints() {
+		return lifePoints;
+	}
 
+	public void setLifePoints(int lifePoints) {
+		this.lifePoints = lifePoints;
+	}
+
+	
+	
+	private boolean attackAttemps(int attackRate) {
+		Random rand = new Random();
+		return (rand.nextInt(11) < attackRate);
+	}
+	
+	private void lifePointsLeft(int damageTaken, int defenseRate, int armor) {
+		Random rand = new Random();
+		(defenseRate > rand.nextInt(11)) ? return setLifePoints(damageSuffered(damageTaken, armor) / 2) : return setLifePoints(damageSuffered(damageTaken, armor));
+	}
+	
+	private int damageSuffered(int damageTaken, int armor) {
+		return 0;
+	}
 }

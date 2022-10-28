@@ -3,13 +3,15 @@ public class Skeleton implements InterfacePersonnages{
 	int attackPoints;
 	int defensePoints;
 	int speedPoints;
+	int lifePoints;
 	String dialogue;
 	
 	
-	Skeleton(int attackPoints, int defensePoints, int speedPoints, String dialogue){ 
+	Skeleton(int attackPoints, int defensePoints, int speedPoints, int lifePoints, String dialogue){ 
 		this.attackPoints = attackPoints;
 		this.defensePoints = defensePoints;
 		this.speedPoints = speedPoints;
+		this.lifePoints = lifePoints; 
 		this.dialogue = dialogue;
 	}
 	
