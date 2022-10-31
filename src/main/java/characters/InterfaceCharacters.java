@@ -14,9 +14,9 @@ public interface InterfaceCharacters {
 
 	public void setSpeedPoints(int speedPoints) ;
 
-	public String getDialogue();
+	public String getName();
 
-	public void setDialogue(String dialogue);
+	public void setName(String name);
 	
 	public int getLifePoints();
 
@@ -24,13 +24,23 @@ public interface InterfaceCharacters {
 	
 	public void attackAttempt(int attackRate, final InterfaceCharacters target);
 	
+	public void defenseAttempt(int attackRate);
+	
 	public void attackSuccess(final InterfaceCharacters target);
+	
+	public void defenseSuccess();
 	
 	public void attackCriticalSuccess(final InterfaceCharacters target);
 	
+	public void defenseCriticalSuccess();
+	
 	public void attackFailure();
 	
+	public void defenseFailure();
+	
 	public void attackCriticalFailure();
+	
+	public void defenseCriticalFailure();
 	
 	public void takeDamage(int damageTaken);	
 	
