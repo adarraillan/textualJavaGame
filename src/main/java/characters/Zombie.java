@@ -1,5 +1,8 @@
+package characters;
 
-public class Skeleton implements InterfacePersonnages{
+import java.util.Random;
+
+public class Zombie implements InterfaceCharacters{
 	int attackPoints;
 	int defensePoints;
 	int speedPoints;
@@ -7,11 +10,11 @@ public class Skeleton implements InterfacePersonnages{
 	String dialogue;
 	
 	
-	Skeleton(int attackPoints, int defensePoints, int speedPoints, int lifePoints, String dialogue){ 
+	Zombie(int attackPoints, int defensePoints, int speedPoints, int lifePoints, String dialogue){ 
 		this.attackPoints = attackPoints;
 		this.defensePoints = defensePoints;
 		this.speedPoints = speedPoints;
-		this.lifePoints = lifePoints; 
+		this.lifePoints = lifePoints;
 		this.dialogue = dialogue;
 	}
 	
@@ -46,8 +49,31 @@ public class Skeleton implements InterfacePersonnages{
 	public void setDialogue(String dialogue) {
 		this.dialogue = dialogue;
 	}
+	
+	public int getLifePoints() {
+		return lifePoints;
+	}
 
+	public void setLifePoints(int lifePoints) {
+		this.lifePoints = lifePoints;
+	}
 	
 	
 	
+	private boolean attackAttemps(int attackRate, int defenseRate) {
+		Random rand = new Random();
+		int attempt = rand.nextInt(11);
+		return (attempt < attackRate) && (attempt < defenseRate);
+	}
+	
+	private void lifePointsLeft(int damageTaken, int defenseRate) {
+		Random rand = new Random();
+		if (rand.nextInt(11) != 1) {
+			this.setLifePoints(this.getLifePoints() - damageTaken);
+		}
+	}
+	
+	
+	
+
 }

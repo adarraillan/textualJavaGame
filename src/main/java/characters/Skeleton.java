@@ -1,35 +1,37 @@
+package characters;
+
 import java.util.Random;
-import java.util.random.*;
-public class Hero implements InterfacePersonnages {
-	int attackRate;
-	int defenseRate;
+
+public class Skeleton implements InterfaceCharacters{
+	int attackPoints;
+	int defensePoints;
 	int speedPoints;
 	int lifePoints;
 	String dialogue;
 	
 	
-	Hero(int attackRate, int defenseRate, int speedPoints, int lifePoints, String dialogue){ 
-		this.attackRate = attackRate;
-		this.defenseRate = defenseRate;
+	Skeleton(int attackPoints, int defensePoints, int speedPoints, int lifePoints, String dialogue){ 
+		this.attackPoints = attackPoints;
+		this.defensePoints = defensePoints;
 		this.speedPoints = speedPoints;
-		this.lifePoints = lifePoints;
+		this.lifePoints = lifePoints; 
 		this.dialogue = dialogue;
 	}
 	
-	public int getAttackRate() {
-		return attackRate;
+	public int getAttackPoints() {
+		return attackPoints;
 	}
 
-	public void setAttackRate(int attackRate) {
-		this.attackRate= attackRate;
+	public void setAttackPoints(int attackPoints) {
+		this.attackPoints = attackPoints;
 	}
 	
-	public int getDefenseRate() {
-		return defenseRate;
+	public int getDefensePoints() {
+		return defensePoints;
 	}
 
-	public void setDefenseRate(int defenseRate) {
-		this.defenseRate = defenseRate;
+	public void setDefensePoints(int defensePoints) {
+		this.defensePoints = defensePoints;
 	}
 
 	public int getSpeedPoints() {
@@ -47,7 +49,7 @@ public class Hero implements InterfacePersonnages {
 	public void setDialogue(String dialogue) {
 		this.dialogue = dialogue;
 	}
-	
+
 	public int getLifePoints() {
 		return lifePoints;
 	}
@@ -55,7 +57,7 @@ public class Hero implements InterfacePersonnages {
 	public void setLifePoints(int lifePoints) {
 		this.lifePoints = lifePoints;
 	}
-
+	
 	
 	
 	private boolean attackAttemps(int attackRate) {
@@ -65,10 +67,16 @@ public class Hero implements InterfacePersonnages {
 	
 	private void lifePointsLeft(int damageTaken, int defenseRate, int armor) {
 		Random rand = new Random();
-		(defenseRate > rand.nextInt(11)) ? return setLifePoints(damageSuffered(damageTaken, armor) / 2) : return setLifePoints(damageSuffered(damageTaken, armor));
+		if (defenseRate > rand.nextInt(11)) {
+			this.setLifePoints(damageSuffered(damageTaken, armor) / 2);
+		}else {	
+		this.setLifePoints(damageSuffered(damageTaken, armor));
+		}
 	}
 	
 	private int damageSuffered(int damageTaken, int armor) {
-		return 0;
+		return (damageTaken - armor);
 	}
+	
+	
 }
