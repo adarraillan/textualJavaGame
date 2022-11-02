@@ -1,9 +1,17 @@
 import characters.*;
-
+import builder.Warrior;
 public class Main {
 
 	public static void main(String[] args) {
-		Warrior link = new Warrior(5, 5, 10, 10, "LINK");
+		//Warrior link = new Warrior(5, 5, 10, 10, "LINK");
+		Warrior link = new Warrior.Builder().attackRate(5)
+											.defenseRate(5)
+											.lifePoints(10)
+											.maxLifePoints(10)
+											.name("Link")
+											.build();
+		
+		
 		Warrior ganon = new Warrior(5, 5, 10, 10, "GANON");
 		while ((ganon.getLifePoints() > 0) && (link.getLifePoints() > 0)) {
 			link.attackAttempt(link.getAttackRate(), ganon);
