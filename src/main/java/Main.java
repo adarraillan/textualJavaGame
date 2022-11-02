@@ -1,10 +1,15 @@
-import characters.Hero;
-import dices.Dice;
+import characters.*;
+
 public class Main {
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
+		Warrior link = new Warrior(5, 5, 10, 10, "LINK");
+		Warrior ganon = new Warrior(5, 5, 10, 10, "GANON");
+=======
 		Hero link = new Hero(5, 5, 5, 10, 10, "LINK");
 		Hero ganon = new Hero(5, 5, 5, 10, 10, "GANON");
+>>>>>>> 96d7de09b0dc8b981b87362fbb00d1bb257573da
 		while ((ganon.getLifePoints() > 0) && (link.getLifePoints() > 0)) {
 			link.attackAttempt(link.getAttackRate(), ganon);
 			System.out.println("### Il reste " + ganon.toStringHP()+ " HP à Ganon ###");
