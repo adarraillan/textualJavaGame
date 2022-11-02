@@ -26,7 +26,7 @@ public class Warrior implements InterfaceCharacters {
 	public int getAttackRate() {
 		return attackRate;
 	}
-	//TODO check
+	//TODO check setters if let mutable class
 	public void setAttackRate(int attackRate) {
 		this.attackRate= attackRate;
 	}
