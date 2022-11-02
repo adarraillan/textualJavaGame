@@ -13,14 +13,14 @@ public enum Strategy {
 	
 	ATTACK_CRITICAL_SUCCESS{
 		@Override
-		void execute() {
+		void execute(InterfaceCharacters target) {
 			//attackCriticalSuccess();
 		}
 	},
 	
 	ATTACK_FAILURE{
 		@Override
-		void execute() {
+		void execute(InterfaceCharacters target) {
 			System.out.println("Attack failure");
 			//attackFailure();
 		}
@@ -28,7 +28,7 @@ public enum Strategy {
 	
 	ATTACK_CRITICAL_FAILURE{
 		@Override
-		void execute() {
+		void execute(InterfaceCharacters target) {
 			//attackCriticalFailure();
 		}
 	};
