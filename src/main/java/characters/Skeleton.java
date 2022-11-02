@@ -2,7 +2,7 @@ package characters;
 
 import java.util.Random;
 
-public class Skeleton implements InterfaceCharacters{
+public class Skeleton /**implements InterfaceCharacters*/{
 	int attackPoints;
 	int defensePoints;
 	int speedPoints;

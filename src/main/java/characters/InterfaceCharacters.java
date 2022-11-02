@@ -8,11 +8,7 @@ public interface InterfaceCharacters {
 	
 	public int getDefenseRate();
 
-	public void setDefenseRate(int defenseRate); 
-
-	public int getSpeedPoints();
-
-	public void setSpeedPoints(int speedPoints) ;
+	public void setDefenseRate(int defenseRate);
 
 	public String getName();
 

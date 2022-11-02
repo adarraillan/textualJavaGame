@@ -2,7 +2,7 @@ package characters;
 
 import java.util.Random;
 
-public class Zombie implements InterfaceCharacters{
+public class Zombie /**implements InterfaceCharacters*/{
 	int attackPoints;
 	int defensePoints;
 	int speedPoints;
