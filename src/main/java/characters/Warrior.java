@@ -72,7 +72,7 @@ public final class Warrior implements Hero {
 	}
 	
 	
-	
+	//
 	public int getAttackRate() {
 		return attackRate;
 	}
