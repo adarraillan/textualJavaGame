@@ -1,19 +1,20 @@
 package characters;
 
+import java.util.Random;
+
 import dices.Attempt;
 import dices.Dice;
 
-public class Wizard implements Hero{
-	
+public class SkeletonArcher {
+
 	private final static int DAMAGE = 5;
 	private final static int ARMOR = 3; 
 	
 	private int attackRate;
 	private int defenseRate;
+	private int speedPoints;
 	private int lifePoints;
-	private int maxLifePoints;
-	private String name;
-	
+	private String dialogue;
 	//Pattern builder to avoid to much parameters
 	/**public Warrior(int attackRate, int defenseRate, int lifePoints, int maxLifePoints, String name){ 
 		this.attackRate = attackRate;
@@ -23,12 +24,12 @@ public class Wizard implements Hero{
 		this.name = name;
 	}*/
 	
-	private Wizard(Builder builder) {
+	private SkeletonArcher(Builder builder) {
 		this.attackRate = builder.attackRate;
 		this.defenseRate = builder.defenseRate;
+		this.speedPoints = builder.speedPoints;
 		this.lifePoints = builder.lifePoints;
-		this.maxLifePoints = builder.maxLifePoints;
-		this.name = builder.name;
+		this.dialogue = builder.dialogue;
 	}
 	
 
@@ -37,8 +38,8 @@ public class Wizard implements Hero{
 		private int attackRate;
 		private int defenseRate;
 		private int lifePoints;
-		private int maxLifePoints;
-		private String name;
+		private int speedPoints;
+		private String dialogue;
 		
 		public Builder attackRate(final int attackRate) {
 			this.attackRate = attackRate;
@@ -55,18 +56,18 @@ public class Wizard implements Hero{
 			return this;
 		}
 		
-		public Builder maxLifePoints(final int maxLifePoints) {
-			this.maxLifePoints = maxLifePoints;
+		public Builder speedPoints(final int speedPoints) {
+			this.speedPoints = speedPoints;
 			return this;
 		}
 		
-		public Builder name(final String name) {
-			this.name = name;
+		public Builder dialogue(final String dialogue) {
+			this.dialogue = dialogue;
 			return this;
 		}
 		
-		public Wizard build() {
-			return new Wizard(this);
+		public SkeletonArcher build() {
+			return new SkeletonArcher(this);
 		}
 		
 	}
@@ -88,14 +89,6 @@ public class Wizard implements Hero{
 	public void setDefenseRate(int defenseRate) {
 		this.defenseRate = defenseRate;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	public int getLifePoints() {
 		return lifePoints;
@@ -110,7 +103,7 @@ public class Wizard implements Hero{
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 		String attempt = Attempt.attemptAttack(attackRate);
 		
-		System.out.println(this.toStringName() + "!!!!! Le dé à fait :" + attempt + " !!!!!");
+		System.out.println("Skeleton Archer !!!!! Le dé à fait :" + attempt + " !!!!!");
 		
 		if (attempt == "attackCriticalSuccess") {
 			attackCriticalSuccess(target);
@@ -125,7 +118,7 @@ public class Wizard implements Hero{
 	
 	public void defenseAttempt(int attackRate) {
 		int attempt = Dice.roll10();
-		System.out.println(this.toStringName() + "????? Le dé de défense à fait :" + attempt + " ?????");
+		System.out.println("SkeletonArcher ????? Le dé de défense à fait :" + attempt + " ?????");
 		if (attempt == 1) {
 			defenseCriticalSuccess();
 		}else if (attempt == 10){
@@ -136,50 +129,39 @@ public class Wizard implements Hero{
 			defenseFailure();
 		}
 	}
-		
-	
 	
 	
 	public void attackSuccess(final InterfaceCharacters target) {
-		System.out.println("Attack succeded!");
 		target.defenseAttempt(target.getDefenseRate());
 	}
 	
 	public void defenseSuccess() {
-		System.out.println("Defense succeded!");
 		this.takeDamage(DAMAGE - ARMOR - dices.Dice.roll2());
 	}
 	
 	public void attackCriticalSuccess(final InterfaceCharacters target) {
-		System.out.println("Critical Attack!");
 		target.defenseAttempt(target.getDefenseRate()/2);
 	}
 	
 	public void defenseCriticalSuccess() {
-		System.out.println("Critical Defense!");
 		this.takeDamage(0);	
 	}
 	
 	public void attackFailure() {
-		System.out.println("Oops, you've missed!");
 	}
 	
 	public void defenseFailure() {
-		System.out.println("Oops, you've missed your defense!");
 		this.takeDamage(DAMAGE - ARMOR);
 	}
 	
 	public void attackCriticalFailure() {
-		System.out.println("Oooooops, critical failure, you hurt yourself!\n You loose 3 HP!");
 		this.takeDamage(3);
 	}
 	
 	public void defenseCriticalFailure() {
-		System.out.println("Oooooops, critical failure, you cannot protect yourself! Armor ignored!");
 		this.takeDamage(DAMAGE*2);
 	}
 
-	
 	public void takeDamage(int damageTaken) {
 		this.setLifePoints(this.lifePoints - damageTaken);
 	}
@@ -187,12 +169,17 @@ public class Wizard implements Hero{
 	public String toStringHP() {
 		return (""+ this.lifePoints );
 	}
-	
-	public String toStringName() {
-		return (""+ this.name );
+
+	public void printDialogue() {
+		Random random = new Random();
+		int rand = 1 + random.nextInt(10);
+		System.out.println(selectDialogue(rand));
 	}
 	
-	public void selectAspect() {
+	public String selectDialogue(int rand) {
 		
 	}
+	
+	
+	
 }

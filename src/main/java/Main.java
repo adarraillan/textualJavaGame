@@ -1,5 +1,5 @@
 import characters.*;
-import builder.Warrior;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class Main {
 											.build();
 		
 		
-		Warrior ganon = new Warrior(5, 5, 10, 10, "GANON");
+		Warrior ganon = new Warrior.Builder().attackRate(7).defenseRate(3).lifePoints(15).maxLifePoints(15).name("Ganon").build();
 		while ((ganon.getLifePoints() > 0) && (link.getLifePoints() > 0)) {
 			link.attackAttempt(link.getAttackRate(), ganon);
 			System.out.println("### Il reste " + ganon.toStringHP()+ " HP à Ganon ###");

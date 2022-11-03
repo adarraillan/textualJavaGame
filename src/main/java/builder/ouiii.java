@@ -1,13 +1,13 @@
 package builder;
 
-public class Warrior {
+public class ouiii {
 	private int attackRate;
 	private int defenseRate;
 	private int lifePoints;
 	private int maxLifePoints;
 	private String name;
 	
-	private Warrior(Builder builder) {
+	private ouiii(Builder builder) {
 		this.attackRate = builder.attackRate;
 		this.defenseRate = builder.defenseRate;
 		this.lifePoints = builder.lifePoints;
@@ -15,6 +15,7 @@ public class Warrior {
 		this.name = builder.name;
 	}
 	
+
 	public static class Builder{
 		
 		private int attackRate;
