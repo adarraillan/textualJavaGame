@@ -2,10 +2,11 @@ package characters;
 
 import java.util.Random;
 
+import dialogues.Dialogues;
 import dices.Attempt;
 import dices.Dice;
 
-public class SkeletonArcher {
+public class SkeletonArcher implements Skeleton  {
 
 	private final static int DAMAGE = 5;
 	private final static int ARMOR = 3; 
@@ -15,8 +16,9 @@ public class SkeletonArcher {
 	private int speedPoints;
 	private int lifePoints;
 	private String dialogue;
+	
 	//Pattern builder to avoid to much parameters
-	/**public Warrior(int attackRate, int defenseRate, int lifePoints, int maxLifePoints, String name){ 
+	/**public SkeletonArcher(int attackRate, int defenseRate, int lifePoints, int maxLifePoints, String name){ 
 		this.attackRate = attackRate;
 		this.defenseRate = defenseRate;
 		this.lifePoints = lifePoints;
@@ -61,8 +63,10 @@ public class SkeletonArcher {
 			return this;
 		}
 		
-		public Builder dialogue(final String dialogue) {
-			this.dialogue = dialogue;
+		public Builder dialogue() {
+			Random random = new Random();
+			int rand = random.nextInt(12);
+			this.dialogue = Dialogues.DIALOGUES_SKELETON.giveDialogue(rand);
 			return this;
 		}
 		
@@ -98,6 +102,9 @@ public class SkeletonArcher {
 		this.lifePoints = lifePoints;
 	}
 
+	public String getdialogue() {
+		return this.dialogue;
+	}
 	
 	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
@@ -170,16 +177,4 @@ public class SkeletonArcher {
 		return (""+ this.lifePoints );
 	}
 
-	public void printDialogue() {
-		Random random = new Random();
-		int rand = 1 + random.nextInt(10);
-		System.out.println(selectDialogue(rand));
-	}
-	
-	public String selectDialogue(int rand) {
-		
-	}
-	
-	
-	
 }

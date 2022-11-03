@@ -17,7 +17,7 @@ public class Attempt {
 		strat.execute();
 	}
 	
-	public static String attemptAttack(int attackRate) {
+	/**public static String attemptAttack(int attackRate) {
 		int diceResult = Dice.roll10();
 		if (diceResult==1) {
 			return "attackCriticalSuccess";
@@ -28,5 +28,5 @@ public class Attempt {
 		}else {
 			return "attackCriticalFailure";
 		}
-	}
+	}*/
 }

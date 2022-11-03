@@ -10,7 +10,5 @@ public interface Skeleton extends InterfaceCharacters{
 	public String getDialogue();
 	public void setDialogue(String dialogue);
 
-	void printDialogue();
-	String selectDialogue(int random);
 	
 }

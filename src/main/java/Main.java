@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		//Warrior link = new Warrior(5, 5, 10, 10, "LINK");
-		Warrior link = new Warrior.Builder().attackRate(5)
+		/**Warrior link = new Warrior.Builder().attackRate(5)
 											.defenseRate(5)
 											.lifePoints(10)
 											.maxLifePoints(10)
@@ -24,7 +24,11 @@ public class Main {
 			if (ganon.getLifePoints() <= 0) {
 				System.out.println("Ganon est décédé, et il reste " + link.toStringHP() + " HP à Link");
 			}
-		}
+		}*/
+		
+		
+		SkeletonArcher skel = new SkeletonArcher.Builder().attackRate(1).defenseRate(0).speedPoints(0).lifePoints(0).dialogue().build();
+		System.out.println(skel.getdialogue());
 		
 //		GameLogic.printHeading("Test toto tata titi tutu");
 //		GameLogic.stopGameUntilInput();

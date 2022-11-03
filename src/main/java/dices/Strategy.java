@@ -6,21 +6,22 @@ public enum Strategy {
 	
 	ATTACK_SUCCESS{
 		@Override
-		void execute(InterfaceCharacters target) {
-			Warrior.attackSuccess(target);
+		void execute() {
+			System.out.println("couciu");
+			//attackSuccess(target);
 		}
 	},
 	
 	ATTACK_CRITICAL_SUCCESS{
 		@Override
-		void execute(InterfaceCharacters target) {
+		void execute() {
 			//attackCriticalSuccess();
 		}
 	},
 	
 	ATTACK_FAILURE{
 		@Override
-		void execute(InterfaceCharacters target) {
+		void execute() {
 			System.out.println("Attack failure");
 			//attackFailure();
 		}
@@ -28,7 +29,7 @@ public enum Strategy {
 	
 	ATTACK_CRITICAL_FAILURE{
 		@Override
-		void execute(InterfaceCharacters target) {
+		void execute() {
 			//attackCriticalFailure();
 		}
 	};
@@ -37,5 +38,5 @@ public enum Strategy {
 		return this.attackRate;
 	}
 	
-	abstract void execute(InterfaceCharacters target);
+	abstract void execute();
 }
