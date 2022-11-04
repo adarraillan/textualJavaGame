@@ -11,7 +11,6 @@ public class Main {
 											.name("Link")
 											.build();
 		
-		//ouiiiiiiii
 
 		Warrior ganon = new Warrior.Builder().attackRate(7).defenseRate(3).lifePoints(15).maxLifePoints(15).name("Ganon").build();
 		while ((ganon.getLifePoints() > 0) && (link.getLifePoints() > 0)) {

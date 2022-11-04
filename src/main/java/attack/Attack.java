@@ -6,5 +6,5 @@ import characters.InterfaceCharacters;
 public interface Attack {
 	
 	void attack(InterfaceCharacters player, InterfaceCharacters target);
-	
+
 }

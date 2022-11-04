@@ -13,27 +13,38 @@ public class SkeletonArcher implements Skeleton  {
 	
 	private int attackRate;
 	private int defenseRate;
-	private int speedPoints;
 	private int lifePoints;
-	private String dialogue;
-	
-	//Pattern builder to avoid to much parameters
-	/**public SkeletonArcher(int attackRate, int defenseRate, int lifePoints, int maxLifePoints, String name){ 
-		this.attackRate = attackRate;
-		this.defenseRate = defenseRate;
-		this.lifePoints = lifePoints;
-		this.maxLifePoints = maxLifePoints;
-		this.name = name;
-	}*/
+
+	public final String dialogue;
 	
 	private SkeletonArcher(Builder builder) {
 		this.attackRate = builder.attackRate;
 		this.defenseRate = builder.defenseRate;
-		this.speedPoints = builder.speedPoints;
+		int speedPoints = builder.speedPoints;
 		this.lifePoints = builder.lifePoints;
 		this.dialogue = builder.dialogue;
 	}
-	
+
+	@Override
+	public int getSpeedPoints() {
+		return 0;
+	}
+
+	@Override
+	public void setSpeedPoints(int speedPoints) {
+
+	}
+
+	@Override
+	public String getDialogue() {
+		return null;
+	}
+
+	@Override
+	public void setDialogue(String dialogue) {
+
+	}
+
 
 	public static class Builder{
 		
@@ -108,19 +119,8 @@ public class SkeletonArcher implements Skeleton  {
 	
 	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
-		String attempt = Attempt.attemptAttack(attackRate);
-		
-		System.out.println("Skeleton Archer !!!!! Le dé à fait :" + attempt + " !!!!!");
-		
-		if (attempt == "attackCriticalSuccess") {
-			attackCriticalSuccess(target);
-		}else if(attempt == "attackSuccess"){
-			attackSuccess(target);
-		}else if(attempt == "attackFailure"){
-			attackFailure();
-		}else {
-			attackCriticalFailure();
-		}
+
+		this.attackAttempt(attackRate, target);
 	}
 	
 	public void defenseAttempt(int attackRate) {

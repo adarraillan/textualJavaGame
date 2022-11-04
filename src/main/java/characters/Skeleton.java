@@ -1,7 +1,5 @@
 package characters;
 
-import java.util.Random;
-
 public interface Skeleton extends InterfaceCharacters{
 	
 	public int getSpeedPoints();

@@ -1,6 +1,5 @@
 package characters;
 
-import dices.Attempt;
 import dices.Dice;
 
 public class Wizard implements Hero{
@@ -108,19 +107,9 @@ public class Wizard implements Hero{
 	
 	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
-		String attempt = Attempt.attemptAttack(attackRate);
+
+		this.attackAttempt(attackRate, target);
 		
-		System.out.println(this.toStringName() + "!!!!! Le dé à fait :" + attempt + " !!!!!");
-		
-		if (attempt == "attackCriticalSuccess") {
-			attackCriticalSuccess(target);
-		}else if(attempt == "attackSuccess"){
-			attackSuccess(target);
-		}else if(attempt == "attackFailure"){
-			attackFailure();
-		}else {
-			attackCriticalFailure();
-		}
 	}
 	
 	public void defenseAttempt(int attackRate) {

@@ -9,10 +9,6 @@ public interface InterfaceCharacters {
 	public int getDefenseRate();
 
 	public void setDefenseRate(int defenseRate);
-
-	public String getName();
-
-	public void setName(String name);
 	
 	public int getLifePoints();
 

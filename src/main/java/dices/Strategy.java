@@ -1,7 +1,5 @@
 package dices;
-import attack.Attack;
-import attack.AttackCriticalSuccess;
-import attack.AttackSuccess;
+import attack.*;
 import characters.InterfaceCharacters;
 
 //change name, avoid override
@@ -9,8 +7,8 @@ public enum Strategy {
 	
 	ATTACK_SUCCESS(new AttackSuccess()),
 	ATTACK_CRITICAL_SUCCESS(new AttackCriticalSuccess()),
-	ATTACK_FAILURE(new AttackSuccess()),
-	ATTACK_CRITICAL_FAILURE(new AttackSuccess());
+	ATTACK_FAILURE(new AttackFailure()),
+	ATTACK_CRITICAL_FAILURE(new AttackCriticalFailure());
 	
 	private Attack attackType;
 	

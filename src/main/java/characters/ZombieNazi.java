@@ -26,12 +26,32 @@ public class ZombieNazi implements Zombie {
      this.name = name;
      }*/
 
-    private SkeletonArcher(Builder builder) {
+    private ZombieNazi(Builder builder) {
         this.attackRate = builder.attackRate;
         this.defenseRate = builder.defenseRate;
         this.speedPoints = builder.speedPoints;
         this.lifePoints = builder.lifePoints;
         this.dialogue = builder.dialogue;
+    }
+
+    @Override
+    public int getSpeedPoints() {
+        return 0;
+    }
+
+    @Override
+    public void setSpeedPoints(int speedPoints) {
+
+    }
+
+    @Override
+    public String getDialogue() {
+        return null;
+    }
+
+    @Override
+    public void setDialogue(String dialogue) {
+
     }
 
 
@@ -70,8 +90,8 @@ public class ZombieNazi implements Zombie {
             return this;
         }
 
-        public SkeletonArcher build() {
-            return new SkeletonArcher(this);
+        public ZombieNazi build() {
+            return new ZombieNazi(this);
         }
 
     }
@@ -94,6 +114,16 @@ public class ZombieNazi implements Zombie {
         this.defenseRate = defenseRate;
     }
 
+
+    public String getName() {
+        return null;
+    }
+
+
+    public void setName(String name) {
+
+    }
+
     public int getLifePoints() {
         return lifePoints;
     }
@@ -108,19 +138,9 @@ public class ZombieNazi implements Zombie {
 
     //TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
     public void attackAttempt(int attackRate, final InterfaceCharacters target) {
-        String attempt = Attempt.attemptAttack(attackRate);
 
-        System.out.println("Skeleton Archer !!!!! Le dé à fait :" + attempt + " !!!!!");
+        this.attackAttempt(attackRate, target);
 
-        if (attempt == "attackCriticalSuccess") {
-            attackCriticalSuccess(target);
-        }else if(attempt == "attackSuccess"){
-            attackSuccess(target);
-        }else if(attempt == "attackFailure"){
-            attackFailure();
-        }else {
-            attackCriticalFailure();
-        }
     }
 
     public void defenseAttempt(int attackRate) {

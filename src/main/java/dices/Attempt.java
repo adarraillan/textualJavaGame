@@ -1,32 +1,27 @@
 package dices;
 
+import characters.InterfaceCharacters;
+
 public class Attempt {
-	private int result;
-	
-	public Attempt() {
-		this.result = Dice.roll10();
+
+
+	public Attempt(int attackRate, InterfaceCharacters target){
+		this.attackRate = attackRate;
+		this.target = target;
 	}
-	
-	public static void main(String[] args) {
-		Attempt att = new Attempt();
-		att.perform(Strategy.attemptAttack(5));
-		att.perform(Strategy.ATTACK_FAILURE);
-	}
-	
-	private void perform(Strategy strat) {
-		strat.execute();
-	}
-	
+
+
 	public static Strategy attemptAttack(int attackRate) {
 		int diceResult = Dice.roll10();
 		if (diceResult==1) {
+
 			return Strategy.ATTACK_CRITICAL_SUCCESS;
 		}else if(diceResult <= attackRate) {
-			return "attackSuccess";
+			return Strategy.ATTACK_SUCCESS;
 		}else if(diceResult < 10) {
-			return "attackFailure";
+			return Strategy.ATTACK_FAILURE;
 		}else {
-			return "attackCriticalFailure";
+			return Strategy.ATTACK_CRITICAL_FAILURE;
 		}
 	}
 }
