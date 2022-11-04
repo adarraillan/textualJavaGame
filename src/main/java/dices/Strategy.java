@@ -1,42 +1,25 @@
 package dices;
-import characters.*;
+import attack.Attack;
+import attack.AttackCriticalSuccess;
+import attack.AttackSuccess;
+import characters.InterfaceCharacters;
 
+//change name, avoid override
 public enum Strategy {
 	
+	ATTACK_SUCCESS(new AttackSuccess()),
+	ATTACK_CRITICAL_SUCCESS(new AttackCriticalSuccess()),
+	ATTACK_FAILURE(new AttackSuccess()),
+	ATTACK_CRITICAL_FAILURE(new AttackSuccess());
 	
-	ATTACK_SUCCESS{
-		@Override
-		void execute() {
-			System.out.println("couciu");
-			//attackSuccess(target);
-		}
-	},
+	private Attack attackType;
 	
-	ATTACK_CRITICAL_SUCCESS{
-		@Override
-		void execute() {
-			//attackCriticalSuccess();
-		}
-	},
-	
-	ATTACK_FAILURE{
-		@Override
-		void execute() {
-			System.out.println("Attack failure");
-			//attackFailure();
-		}
-	},
-	
-	ATTACK_CRITICAL_FAILURE{
-		@Override
-		void execute() {
-			//attackCriticalFailure();
-		}
-	};
-	
-	public int getAttackRate() {
-		return this.attackRate;
+	private Strategy(Attack attack) {
+		this.attackType = attack;
 	}
 	
-	abstract void execute();
+	public void attack(InterfaceCharacters player, InterfaceCharacters target) {
+		attackType.attack(player, target);
+	}
+	
 }

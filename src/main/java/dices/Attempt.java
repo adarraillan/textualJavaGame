@@ -9,7 +9,7 @@ public class Attempt {
 	
 	public static void main(String[] args) {
 		Attempt att = new Attempt();
-		att.perform(Strategy.ATTACK_SUCCESS);
+		att.perform(Strategy.attemptAttack(5));
 		att.perform(Strategy.ATTACK_FAILURE);
 	}
 	
@@ -17,10 +17,10 @@ public class Attempt {
 		strat.execute();
 	}
 	
-	/**public static String attemptAttack(int attackRate) {
+	public static Strategy attemptAttack(int attackRate) {
 		int diceResult = Dice.roll10();
 		if (diceResult==1) {
-			return "attackCriticalSuccess";
+			return Strategy.ATTACK_CRITICAL_SUCCESS;
 		}else if(diceResult <= attackRate) {
 			return "attackSuccess";
 		}else if(diceResult < 10) {
@@ -28,5 +28,7 @@ public class Attempt {
 		}else {
 			return "attackCriticalFailure";
 		}
-	}*/
+	}
 }
+//classe game qui gère les lancers de dés et les succès
+//changer nom enum strat
