@@ -11,21 +11,16 @@ public class AttemptDefense {
 		this.defenseRate = defenseRate;
 	}*/
 
-	public static DefenseChoiceStrategy attemptDefense(int defenseRate, InterfaceCharacters player, int damageTaken) {
-		System.out.println("Je suis dans Attempt.attemptDefense()");
+	public static void attemptDefense(int defenseRate, InterfaceCharacters player, int damageTaken) {
 		int diceResult = Dice.roll10();
 		if (diceResult==1) {
-			System.out.println("defense critique!");
-			return DefenseChoiceStrategy.DEFENSE_CRITICAL_SUCCESS.defense(player, damageTaken);
+			DefenseChoiceStrategy.DEFENSE_CRITICAL_SUCCESS.defense(player, damageTaken);
 		}else if(diceResult <= defenseRate) {
-			System.out.println("defense réussie!");
-			return DefenseChoiceStrategy.DEFENSE_SUCCESS.defense(player, damageTaken);
+			DefenseChoiceStrategy.DEFENSE_SUCCESS.defense(player, damageTaken);
 		}else if(diceResult < 10) {
-			System.out.println("defense ratée!");
-			return DefenseChoiceStrategy.DEFENSE_FAILURE.defense(player, damageTaken);
+			DefenseChoiceStrategy.DEFENSE_FAILURE.defense(player, damageTaken);
 		}else {
-			System.out.println("defense critique ratée!");
-			return DefenseChoiceStrategy.DEFENSE_CRITICAL_FAILURE.defense(player, damageTaken);
+			DefenseChoiceStrategy.DEFENSE_CRITICAL_FAILURE.defense(player, damageTaken);
 		}
 	}
 

@@ -14,26 +14,19 @@ public class AttemptAttack {
 	}*/
 
 
-
-	public static AttackChoiceStrategy attemptAttack(int attackRate, InterfaceCharacters player, InterfaceCharacters target) {
-		System.out.println("Je suis dans Attempt.attemptAttack()");
+	/**créer une seconde méthode qui sépare les if else, des appels de la stratégie*/
+	public static void attemptAttack(int attackRate, InterfaceCharacters player, InterfaceCharacters target) {
 		int diceResult = Dice.roll10();
 		if (diceResult==1) {
-			System.out.println("attaque critique!");
-			return AttackChoiceStrategy.ATTACK_CRITICAL_SUCCESS.attack(player , target);
+			AttackChoiceStrategy.ATTACK_CRITICAL_SUCCESS.attack(player , target);
 		}else if(diceResult <= attackRate) {
-			System.out.println("attaque réussie!");
-			return AttackChoiceStrategy.ATTACK_SUCCESS.attack(player , target);
+			AttackChoiceStrategy.ATTACK_SUCCESS.attack(player , target);
 		}else if(diceResult < 10) {
-			System.out.println("attaque ratée!");
-			return AttackChoiceStrategy.ATTACK_FAILURE.attack(player , target);
+			AttackChoiceStrategy.ATTACK_FAILURE.attack(player , target);
 		}else {
-			System.out.println("attaque critique ratée!");
-			return AttackChoiceStrategy.ATTACK_CRITICAL_FAILURE.attack(player , target);
+			AttackChoiceStrategy.ATTACK_CRITICAL_FAILURE.attack(player , target);
 		}
 	}
 
 
 }
-//classe game qui gère les lancers de dés et les succès
-//changer nom enum strat

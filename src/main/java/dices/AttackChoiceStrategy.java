@@ -16,9 +16,9 @@ public enum AttackChoiceStrategy {
 		this.attackType = attack;
 	}
 
-	public AttackChoiceStrategy attack(InterfaceCharacters player, InterfaceCharacters target) {
+	public void attack(InterfaceCharacters player, InterfaceCharacters target) {
 
-		return attackType.attack(player, target);
+		attackType.attack(player, target);
 
 	}
 

@@ -121,7 +121,6 @@ public class Wizard implements Hero{
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 		//warrior attempt attack to target
 		//AttemptAttack attack = new AttemptAttack(attackRate, target);
-		System.out.println("Je suis dans Warrior.attackAttempt()");
 		AttemptAttack.attemptAttack(attackRate, this, target);
 
 
@@ -129,58 +128,45 @@ public class Wizard implements Hero{
 
 	public void defenseAttempt(int defenseRate, int damageTaken) {
 		//AttemptDefense defense = new AttemptDefense(defenseRate);
-		System.out.println("Je suis dans Warrior.defenseAttempt()");
 		AttemptDefense.attemptDefense(defenseRate, this, damageTaken);
+
 	}
 
 
 
 
-	public AttackChoiceStrategy attackSuccess(final InterfaceCharacters target, int damage) {
-		System.out.println("Attack succeded!");
+	public void attackSuccess(final InterfaceCharacters target, int damage) {
 		target.defenseAttempt(target.getDefenseRate(), this.damage);
-		return null;
 	}
 
-	public DefenseChoiceStrategy defenseSuccess(int damageTaken) {
-		System.out.println("Defense succeded!");
+	public void defenseSuccess(int damageTaken) {
 		this.takeDamage(damageTaken - ARMOR - dices.Dice.roll2());
-		return null;
 	}
 
-	public AttackChoiceStrategy attackCriticalSuccess(final InterfaceCharacters target, int damage) {
-		System.out.println("Critical Attack!");
+	public void attackCriticalSuccess(final InterfaceCharacters target, int damage) {
 		target.defenseAttempt(target.getDefenseRate()/2, this.damage);
-		return null;
 	}
 
-	public DefenseChoiceStrategy defenseCriticalSuccess() {
-		System.out.println("Critical Defense!");
+	public void defenseCriticalSuccess() {
 		this.takeDamage(0);
-		return null;
 	}
 
-	public AttackChoiceStrategy attackFailure() {
-		System.out.println("Oops, you've missed!");
-		return null;
+	public void attackFailure() {
+		System.out.println("You missed your attack");
 	}
 
-	public DefenseChoiceStrategy defenseFailure(int damageTaken) {
-		System.out.println("Oops, you've missed your defense!");
+	public void defenseFailure(int damageTaken) {
 		this.takeDamage(damageTaken - ARMOR);
-		return null;
 	}
 
-	public AttackChoiceStrategy attackCriticalFailure() {
+	public void attackCriticalFailure() {
 		System.out.println("Oooooops, critical failure, you hurt yourself!\n You loose 3 HP!");
 		this.takeDamage(3);
-		return null;
 	}
 
-	public DefenseChoiceStrategy defenseCriticalFailure(int damageTaken) {
+	public void defenseCriticalFailure(int damageTaken) {
 		System.out.println("Oooooops, critical failure, you cannot protect yourself! Armor ignored!");
 		this.takeDamage(damageTaken * 2);
-		return null;
 	}
 	
 	public void takeDamage(int damageTaken) {
