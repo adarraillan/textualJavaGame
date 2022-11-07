@@ -5,11 +5,11 @@ import characters.InterfaceCharacters;
 public class AttemptDefense {
 
 
-	private final int defenseRate;
+/*	private final int defenseRate;
 
 	public AttemptDefense(int defenseRate) {
 		this.defenseRate = defenseRate;
-	}
+	}*/
 
 	public static DefenseChoiceStrategy attemptDefense(int defenseRate, InterfaceCharacters player) {
 		System.out.println("Je suis dans Attempt.attemptDefense()");

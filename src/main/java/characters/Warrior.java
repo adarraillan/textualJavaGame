@@ -10,7 +10,7 @@ public final class Warrior implements Hero {
 	private int attackRate;
 	private int defenseRate;
 	private int lifePoints;
-	private int maxLifePoints;
+	private final int maxLifePoints;
 	private String name;
 	
 	//Pattern builder to avoid to much parameters
@@ -108,17 +108,17 @@ public final class Warrior implements Hero {
 	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 		//warrior attempt attack to target
-		AttemptAttack attack = new AttemptAttack(attackRate, target);
+		//AttemptAttack attack = new AttemptAttack(attackRate, target);
 		System.out.println("Je suis dans Warrior.attackAttempt()");
-		attack.attemptAttack(attackRate, this, target);
+		AttemptAttack.attemptAttack(attackRate, this, target);
 
 
 	}
 	
 	public void defenseAttempt(int defenseRate) {
-		AttemptDefense defense = new AttemptDefense(defenseRate);
+		//AttemptDefense defense = new AttemptDefense(defenseRate);
 		System.out.println("Je suis dans Warrior.defenseAttempt()");
-		defense.attemptDefense(defenseRate, this);
+		AttemptDefense.attemptDefense(defenseRate, this);
 	}
 		
 	

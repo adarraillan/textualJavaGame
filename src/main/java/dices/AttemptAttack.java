@@ -5,13 +5,13 @@ import characters.InterfaceCharacters;
 public class AttemptAttack {
 
 
-	private final int attackRate;
+	/*private final int attackRate;
 	private final InterfaceCharacters target;
 
 	public AttemptAttack(int attackRate, InterfaceCharacters target){
 		this.attackRate = attackRate;
 		this.target = target;
-	}
+	}*/
 
 
 
@@ -32,6 +32,7 @@ public class AttemptAttack {
 			return AttackChoiceStrategy.ATTACK_CRITICAL_FAILURE.attack(player , target);
 		}
 	}
+
 
 }
 //classe game qui gère les lancers de dés et les succès

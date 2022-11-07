@@ -3,9 +3,7 @@ package characters;
 import java.util.Random;
 
 import dialogues.Dialogues;
-import dices.DefenseChoiceStrategy;
-import dices.Dice;
-import dices.AttackChoiceStrategy;
+import dices.*;
 
 public class SkeletonArcher implements Skeleton  {
 
@@ -121,21 +119,16 @@ public class SkeletonArcher implements Skeleton  {
 	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 
-		this.attackAttempt(attackRate, target);
+		System.out.println("Je suis dans SkeletonArcher.attackAttempt()");
+		AttemptAttack.attemptAttack(attackRate, this, target);
+
 	}
 	
 	public void defenseAttempt(int attackRate) {
-		int attempt = Dice.roll10();
-		System.out.println("SkeletonArcher ????? Le dé de défense à fait :" + attempt + " ?????");
-		if (attempt == 1) {
-			defenseCriticalSuccess();
-		}else if (attempt == 10){
-			defenseCriticalFailure();
-		}else if(attempt <= defenseRate){
-			defenseSuccess();
-		}else {
-			defenseFailure();
-		}
+
+		System.out.println("Je suis dans SkeletonArcher.defenseAttempt()");
+		AttemptDefense.attemptDefense(attackRate, this);
+
 	}
 	
 	

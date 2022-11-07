@@ -7,7 +7,7 @@ public class DefenseCriticalFailure implements Defense {
 
 	@Override
 	public DefenseChoiceStrategy defense(InterfaceCharacters player) {
-		System.out.println("Je suis dans AttackCriticalFailure.attack()");
+		System.out.println("Je suis dans DefenseCriticalFailure.attack()");
 		return player.defenseCriticalFailure();
 
 	}
