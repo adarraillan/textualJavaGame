@@ -6,6 +6,6 @@ import dices.DefenseChoiceStrategy;
 @FunctionalInterface
 public interface Defense {
 	
-	DefenseChoiceStrategy defense(InterfaceCharacters player);
+	DefenseChoiceStrategy defense(InterfaceCharacters player, int damageTaken);
 
 }

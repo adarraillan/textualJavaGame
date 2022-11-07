@@ -11,6 +11,7 @@ public final class Warrior implements Hero {
 	private int defenseRate;
 	private int lifePoints;
 	private final int maxLifePoints;
+	private int damage;
 	private String name;
 	
 	//Pattern builder to avoid to much parameters
@@ -27,6 +28,7 @@ public final class Warrior implements Hero {
 		this.defenseRate = builder.defenseRate;
 		this.lifePoints = builder.lifePoints;
 		this.maxLifePoints = builder.maxLifePoints;
+		this.damage = builder.damage;
 		this.name = builder.name;
 	}
 	
@@ -37,6 +39,7 @@ public final class Warrior implements Hero {
 		private int defenseRate;
 		private int lifePoints;
 		private int maxLifePoints;
+		private int damage;
 		private String name;
 		
 		public Builder attackRate(final int attackRate) {
@@ -56,6 +59,11 @@ public final class Warrior implements Hero {
 		
 		public Builder maxLifePoints(final int maxLifePoints) {
 			this.maxLifePoints = maxLifePoints;
+			return this;
+		}
+
+		public Builder damage(final int damage) {
+			this.damage = damage;
 			return this;
 		}
 		
@@ -104,7 +112,19 @@ public final class Warrior implements Hero {
 		this.lifePoints = lifePoints;
 	}
 
-	
+	@Override
+	public int getDamage() {
+		return 0;
+	}
+
+	public void getDamage(int damage) {
+		this.damage = damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
 	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 		//warrior attempt attack to target
@@ -114,31 +134,31 @@ public final class Warrior implements Hero {
 
 
 	}
-	
-	public void defenseAttempt(int defenseRate) {
+
+	public void defenseAttempt(int defenseRate, int damageTaken) {
 		//AttemptDefense defense = new AttemptDefense(defenseRate);
 		System.out.println("Je suis dans Warrior.defenseAttempt()");
-		AttemptDefense.attemptDefense(defenseRate, this);
+		AttemptDefense.attemptDefense(defenseRate, this, damageTaken);
 	}
 		
 	
 	
 	
-	public AttackChoiceStrategy attackSuccess(final InterfaceCharacters target) {
+	public AttackChoiceStrategy attackSuccess(final InterfaceCharacters target, int damage) {
 		System.out.println("Attack succeded!");
-		target.defenseAttempt(target.getDefenseRate());
+		target.defenseAttempt(target.getDefenseRate(), this.damage);
 		return null;
 	}
 	
-	public DefenseChoiceStrategy defenseSuccess() {
+	public DefenseChoiceStrategy defenseSuccess(int damageTaken) {
 		System.out.println("Defense succeded!");
-		this.takeDamage(DAMAGE - ARMOR - dices.Dice.roll2());
+		this.takeDamage(damageTaken - ARMOR - dices.Dice.roll2());
 		return null;
 	}
 	
-	public AttackChoiceStrategy attackCriticalSuccess(final InterfaceCharacters target) {
+	public AttackChoiceStrategy attackCriticalSuccess(final InterfaceCharacters target, int damage) {
 		System.out.println("Critical Attack!");
-		target.defenseAttempt(target.getDefenseRate()/2);
+		target.defenseAttempt(target.getDefenseRate()/2, this.damage);
 		return null;
 	}
 	
@@ -153,9 +173,9 @@ public final class Warrior implements Hero {
 		return null;
 	}
 	
-	public DefenseChoiceStrategy defenseFailure() {
+	public DefenseChoiceStrategy defenseFailure(int damageTaken) {
 		System.out.println("Oops, you've missed your defense!");
-		this.takeDamage(DAMAGE - ARMOR);
+		this.takeDamage(damageTaken - ARMOR);
 		return null;
 	}
 	
@@ -165,9 +185,9 @@ public final class Warrior implements Hero {
 		return null;
 	}
 	
-	public DefenseChoiceStrategy defenseCriticalFailure() {
+	public DefenseChoiceStrategy defenseCriticalFailure(int damageTaken) {
 		System.out.println("Oooooops, critical failure, you cannot protect yourself! Armor ignored!");
-		this.takeDamage(DAMAGE*2);
+		this.takeDamage(damageTaken * 2);
 		return null;
 	}
 

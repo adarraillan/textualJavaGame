@@ -16,9 +16,9 @@ public enum DefenseChoiceStrategy {
         this.defenseType = defense;
     }
 
-    public DefenseChoiceStrategy defense(InterfaceCharacters player) {
+    public DefenseChoiceStrategy defense(InterfaceCharacters player, int damageTaken) {
 
-        return defenseType.defense(player);
+        return defenseType.defense(player, damageTaken);
 
     }
 }

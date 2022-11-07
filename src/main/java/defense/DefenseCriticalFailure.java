@@ -6,9 +6,9 @@ import dices.DefenseChoiceStrategy;
 public class DefenseCriticalFailure implements Defense {
 
 	@Override
-	public DefenseChoiceStrategy defense(InterfaceCharacters player) {
+	public DefenseChoiceStrategy defense(InterfaceCharacters player, int damageTaken) {
 		System.out.println("Je suis dans DefenseCriticalFailure.attack()");
-		return player.defenseCriticalFailure();
+		return player.defenseCriticalFailure(damageTaken);
 
 	}
 	

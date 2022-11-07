@@ -8,7 +8,7 @@ public class AttackSuccess implements Attack{
 	@Override
 	public AttackChoiceStrategy attack(InterfaceCharacters player, InterfaceCharacters target) {
 		System.out.println("Je suis dans AttackSuccess.attack()");
-		return player.attackSuccess(target);
+		return player.attackSuccess(target, player.getDamage());
 
 	}
 	
