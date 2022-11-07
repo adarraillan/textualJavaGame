@@ -1,12 +1,15 @@
 package attack;
 
 import characters.InterfaceCharacters;
+import dices.Strategy;
 
 public class AttackCriticalFailure implements Attack{
 
 	@Override
-	public void attack(InterfaceCharacters player, InterfaceCharacters target) {
-		player.attackCriticalFailure();
+	public Strategy attack(InterfaceCharacters player, InterfaceCharacters target) {
+		System.out.println("Je suis dans AttackCriticalFailure.attack()");
+		return player.attackCriticalFailure();
+
 	}
 	
 }

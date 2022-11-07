@@ -1,6 +1,7 @@
 package characters;
 
 import dices.Dice;
+import dices.Strategy;
 
 public class Wizard implements Hero{
 	
@@ -129,9 +130,10 @@ public class Wizard implements Hero{
 	
 	
 	
-	public void attackSuccess(final InterfaceCharacters target) {
+	public Strategy attackSuccess(final InterfaceCharacters target) {
 		System.out.println("Attack succeded!");
 		target.defenseAttempt(target.getDefenseRate());
+		return null;
 	}
 	
 	public void defenseSuccess() {
@@ -139,9 +141,10 @@ public class Wizard implements Hero{
 		this.takeDamage(DAMAGE - ARMOR - dices.Dice.roll2());
 	}
 	
-	public void attackCriticalSuccess(final InterfaceCharacters target) {
+	public Strategy attackCriticalSuccess(final InterfaceCharacters target) {
 		System.out.println("Critical Attack!");
 		target.defenseAttempt(target.getDefenseRate()/2);
+		return null;
 	}
 	
 	public void defenseCriticalSuccess() {
@@ -149,18 +152,20 @@ public class Wizard implements Hero{
 		this.takeDamage(0);	
 	}
 	
-	public void attackFailure() {
+	public Strategy attackFailure() {
 		System.out.println("Oops, you've missed!");
-	}
+        return null;
+    }
 	
 	public void defenseFailure() {
 		System.out.println("Oops, you've missed your defense!");
 		this.takeDamage(DAMAGE - ARMOR);
 	}
 	
-	public void attackCriticalFailure() {
+	public Strategy attackCriticalFailure() {
 		System.out.println("Oooooops, critical failure, you hurt yourself!\n You loose 3 HP!");
 		this.takeDamage(3);
+		return null;
 	}
 	
 	public void defenseCriticalFailure() {

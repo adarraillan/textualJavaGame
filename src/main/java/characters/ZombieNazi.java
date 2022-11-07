@@ -3,8 +3,8 @@ package characters;
 import java.util.Random;
 
 import dialogues.Dialogues;
-import dices.Attempt;
 import dices.Dice;
+import dices.Strategy;
 
 public class ZombieNazi implements Zombie {
 
@@ -158,31 +158,35 @@ public class ZombieNazi implements Zombie {
     }
 
 
-    public void attackSuccess(final InterfaceCharacters target) {
+    public Strategy attackSuccess(final InterfaceCharacters target) {
         target.defenseAttempt(target.getDefenseRate());
+        return null;
     }
 
     public void defenseSuccess() {
         this.takeDamage(DAMAGE - ARMOR - dices.Dice.roll2());
     }
 
-    public void attackCriticalSuccess(final InterfaceCharacters target) {
+    public Strategy attackCriticalSuccess(final InterfaceCharacters target) {
         target.defenseAttempt(target.getDefenseRate()/2);
+        return null;
     }
 
     public void defenseCriticalSuccess() {
         this.takeDamage(0);
     }
 
-    public void attackFailure() {
+    public Strategy attackFailure() {
+        return null;
     }
 
     public void defenseFailure() {
         this.takeDamage(DAMAGE - ARMOR);
     }
 
-    public void attackCriticalFailure() {
+    public Strategy attackCriticalFailure() {
         this.takeDamage(3);
+        return null;
     }
 
     public void defenseCriticalFailure() {

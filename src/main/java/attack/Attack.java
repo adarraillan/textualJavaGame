@@ -1,10 +1,11 @@
 package attack;
 
 import characters.InterfaceCharacters;
+import dices.Strategy;
 
 @FunctionalInterface
 public interface Attack {
 	
-	void attack(InterfaceCharacters player, InterfaceCharacters target);
+	Strategy attack(InterfaceCharacters player, InterfaceCharacters target);
 
 }

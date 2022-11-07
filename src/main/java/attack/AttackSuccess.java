@@ -1,12 +1,15 @@
 package attack;
 
 import characters.InterfaceCharacters;
+import dices.Strategy;
 
 public class AttackSuccess implements Attack{
 
 	@Override
-	public void attack(InterfaceCharacters player, InterfaceCharacters target) {
-		player.attackSuccess(target);
+	public Strategy attack(InterfaceCharacters player, InterfaceCharacters target) {
+		System.out.println("Je suis dans AttackSuccess.attack()");
+		return player.attackSuccess(target);
+
 	}
 	
 }
