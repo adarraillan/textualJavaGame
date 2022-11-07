@@ -1,8 +1,6 @@
 package characters;
 
-import dices.Attempt;
-import dices.Dice;
-import dices.Strategy;
+import dices.*;
 
 public final class Warrior implements Hero {
 	
@@ -110,71 +108,67 @@ public final class Warrior implements Hero {
 	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 		//warrior attempt attack to target
-		Attempt attack = new Attempt(attackRate, target);
+		AttemptAttack attack = new AttemptAttack(attackRate, target);
 		System.out.println("Je suis dans Warrior.attackAttempt()");
 		attack.attemptAttack(attackRate, this, target);
 
 
 	}
 	
-	public void defenseAttempt(int attackRate) {
-		int attempt = Dice.roll10();
-		System.out.println(this.toStringName() + "????? Le dé de défense à fait :" + attempt + " ?????");
-		if (attempt == 1) {
-			defenseCriticalSuccess();
-		}else if (attempt == 10){
-			defenseCriticalFailure();
-		}else if(attempt <= defenseRate){
-			defenseSuccess();
-		}else {
-			defenseFailure();
-		}
+	public void defenseAttempt(int defenseRate) {
+		AttemptDefense defense = new AttemptDefense(defenseRate);
+		System.out.println("Je suis dans Warrior.defenseAttempt()");
+		defense.attemptDefense(defenseRate, this);
 	}
 		
 	
 	
 	
-	public Strategy attackSuccess(final InterfaceCharacters target) {
+	public AttackChoiceStrategy attackSuccess(final InterfaceCharacters target) {
 		System.out.println("Attack succeded!");
 		target.defenseAttempt(target.getDefenseRate());
 		return null;
 	}
 	
-	public void defenseSuccess() {
+	public DefenseChoiceStrategy defenseSuccess() {
 		System.out.println("Defense succeded!");
 		this.takeDamage(DAMAGE - ARMOR - dices.Dice.roll2());
+		return null;
 	}
 	
-	public Strategy attackCriticalSuccess(final InterfaceCharacters target) {
+	public AttackChoiceStrategy attackCriticalSuccess(final InterfaceCharacters target) {
 		System.out.println("Critical Attack!");
 		target.defenseAttempt(target.getDefenseRate()/2);
 		return null;
 	}
 	
-	public void defenseCriticalSuccess() {
+	public DefenseChoiceStrategy defenseCriticalSuccess() {
 		System.out.println("Critical Defense!");
-		this.takeDamage(0);	
+		this.takeDamage(0);
+		return null;
 	}
 	
-	public Strategy attackFailure() {
+	public AttackChoiceStrategy attackFailure() {
 		System.out.println("Oops, you've missed!");
 		return null;
 	}
 	
-	public void defenseFailure() {
+	public DefenseChoiceStrategy defenseFailure() {
 		System.out.println("Oops, you've missed your defense!");
 		this.takeDamage(DAMAGE - ARMOR);
+		return null;
 	}
 	
-	public Strategy attackCriticalFailure() {
+	public AttackChoiceStrategy attackCriticalFailure() {
 		System.out.println("Oooooops, critical failure, you hurt yourself!\n You loose 3 HP!");
 		this.takeDamage(3);
 		return null;
 	}
 	
-	public void defenseCriticalFailure() {
+	public DefenseChoiceStrategy defenseCriticalFailure() {
 		System.out.println("Oooooops, critical failure, you cannot protect yourself! Armor ignored!");
 		this.takeDamage(DAMAGE*2);
+		return null;
 	}
 
 	

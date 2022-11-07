@@ -1,6 +1,7 @@
 package characters;
 
-import dices.Strategy;
+import dices.AttackChoiceStrategy;
+import dices.DefenseChoiceStrategy;
 
 public interface InterfaceCharacters {
 	
@@ -20,21 +21,21 @@ public interface InterfaceCharacters {
 	
 	public void defenseAttempt(int attackRate);
 	
-	public Strategy attackSuccess(final InterfaceCharacters target);
+	public AttackChoiceStrategy attackSuccess(final InterfaceCharacters target);
 	
-	public void defenseSuccess();
+	public DefenseChoiceStrategy defenseSuccess();
 	
-	public Strategy attackCriticalSuccess(final InterfaceCharacters target);
+	public AttackChoiceStrategy attackCriticalSuccess(final InterfaceCharacters target);
 	
-	public void defenseCriticalSuccess();
+	public DefenseChoiceStrategy defenseCriticalSuccess();
 	
-	public Strategy attackFailure();
+	public AttackChoiceStrategy attackFailure();
 	
-	public void defenseFailure();
+	public DefenseChoiceStrategy defenseFailure();
 	
-	public Strategy attackCriticalFailure();
+	public AttackChoiceStrategy attackCriticalFailure();
 	
-	public void defenseCriticalFailure();
+	public DefenseChoiceStrategy defenseCriticalFailure();
 	
 	public void takeDamage(int damageTaken);	
 	

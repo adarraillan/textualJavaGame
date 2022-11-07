@@ -3,8 +3,9 @@ package characters;
 import java.util.Random;
 
 import dialogues.Dialogues;
+import dices.DefenseChoiceStrategy;
 import dices.Dice;
-import dices.Strategy;
+import dices.AttackChoiceStrategy;
 
 public class ZombieNazi implements Zombie {
 
@@ -158,39 +159,43 @@ public class ZombieNazi implements Zombie {
     }
 
 
-    public Strategy attackSuccess(final InterfaceCharacters target) {
+    public AttackChoiceStrategy attackSuccess(final InterfaceCharacters target) {
         target.defenseAttempt(target.getDefenseRate());
         return null;
     }
 
-    public void defenseSuccess() {
+    public DefenseChoiceStrategy defenseSuccess() {
         this.takeDamage(DAMAGE - ARMOR - dices.Dice.roll2());
+        return null;
     }
 
-    public Strategy attackCriticalSuccess(final InterfaceCharacters target) {
+    public AttackChoiceStrategy attackCriticalSuccess(final InterfaceCharacters target) {
         target.defenseAttempt(target.getDefenseRate()/2);
         return null;
     }
 
-    public void defenseCriticalSuccess() {
+    public DefenseChoiceStrategy defenseCriticalSuccess() {
         this.takeDamage(0);
-    }
-
-    public Strategy attackFailure() {
         return null;
     }
 
-    public void defenseFailure() {
-        this.takeDamage(DAMAGE - ARMOR);
+    public AttackChoiceStrategy attackFailure() {
+        return null;
     }
 
-    public Strategy attackCriticalFailure() {
+    public DefenseChoiceStrategy defenseFailure() {
+        this.takeDamage(DAMAGE - ARMOR);
+        return null;
+    }
+
+    public AttackChoiceStrategy attackCriticalFailure() {
         this.takeDamage(3);
         return null;
     }
 
-    public void defenseCriticalFailure() {
+    public DefenseChoiceStrategy defenseCriticalFailure() {
         this.takeDamage(DAMAGE*2);
+        return null;
     }
 
     public void takeDamage(int damageTaken) {
