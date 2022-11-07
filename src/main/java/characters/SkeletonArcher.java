@@ -17,7 +17,7 @@ public class SkeletonArcher implements Skeleton  {
 	private int damage;
 	public final String dialogue;
 	
-	private SkeletonArcher(Builder builder) {
+	public SkeletonArcher(Builder builder) {
 		this.attackRate = builder.attackRate;
 		this.defenseRate = builder.defenseRate;
 		this.speedPoints = builder.speedPoints;
@@ -81,7 +81,7 @@ public class SkeletonArcher implements Skeleton  {
 		
 		public Builder dialogue() {
 			Random random = new Random();
-			int rand = random.nextInt(12);
+			int rand = random.nextInt(11);
 			this.dialogue = Dialogues.DIALOGUES_SKELETON.giveDialogue(rand);
 			return this;
 		}

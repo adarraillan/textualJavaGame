@@ -12,22 +12,29 @@ public class Main {
 											 .lifePoints(15).maxLifePoints(15)
 											 .name("Ganon").build();
 
+		//InterfaceCharacters link = Player.selectCharacter();
+		InterfaceCharacters skeske = new SkeletonArcher.Builder().attackRate(5).defenseRate(5)
+											.lifePoints(10).speedPoints(1).dialogue().build();
+		InterfaceCharacters zombhitler = new ZombieNazi.Builder().attackRate(5).defenseRate(5)
+											.lifePoints(10).speedPoints(1).dialogue().build();
+
+		//Player.battle(link, skeske, zombhitler);
 
 		while ((ganon.getLifePoints() > 0) && (link.getLifePoints() > 0)) {
-			System.out.println("Link attacks Ganon");
+			System.out.println("Link attacks ganon");
 			link.attackAttempt(link.getAttackRate(), ganon);
-			System.out.println("### Il reste " + ganon.toStringHP()+ " HP à Ganon ###");
-			System.out.println("Ganon attacks Link");
-			ganon.attackAttempt(ganon.getAttackRate(), link);
+			System.out.println("### Il reste " + ganon.toStringHP()+ " HP à ganon ###");
+			System.out.println("ganon attacks Link");
+			skeske.attackAttempt(ganon.getAttackRate(), link);
 			System.out.println("### Il reste " + link.toStringHP()+ " HP à Link ###");
 		}
 
 
 		if (link.getLifePoints() <= 0) {
-			System.out.println("Link est décédé ("+link.toStringHP()+"), et il reste " + ganon.toStringHP() + " HP à Ganon");
+			System.out.println("Link est décédé ("+link.toStringHP()+"), et il reste " + skeske.toStringHP() + " HP à skeske");
 		}
-		if (ganon.getLifePoints() <= 0) {
-			System.out.println("Ganon est décédé ("+ganon.toStringHP()+"), et il reste " + link.toStringHP() + " HP à Link");
+		if (skeske.getLifePoints() <= 0) {
+			System.out.println("skeske est décédé ("+skeske.toStringHP()+"), et il reste " + link.toStringHP() + " HP à Link");
 		}
 		
 		

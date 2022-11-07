@@ -20,9 +20,9 @@ public interface InterfaceCharacters {
 	public int getDamage();
 
 	public void setDamage(int damage);
-	
+
 	public void attackAttempt(int attackRate, final InterfaceCharacters target);
-	
+
 	public void defenseAttempt(int attackRate, int damageTaken);
 	
 	public AttackChoiceStrategy attackSuccess(final InterfaceCharacters target, int damage);
@@ -41,6 +41,7 @@ public interface InterfaceCharacters {
 	
 	public DefenseChoiceStrategy defenseCriticalFailure(int damageTaken);
 	
-	public void takeDamage(int damageTaken);	
-	
+	public void takeDamage(int damageTaken);
+
+	String toStringHP();
 }
