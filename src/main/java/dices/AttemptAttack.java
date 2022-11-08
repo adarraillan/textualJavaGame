@@ -13,19 +13,22 @@ public class AttemptAttack {
 		this.target = target;
 	}*/
 
-
-	/**créer une seconde méthode qui sépare les if else, des appels de la stratégie*/
-	public static void attemptAttack(int attackRate, InterfaceCharacters player, InterfaceCharacters target) {
+	public  AttackChoiceStrategy selectAttack(int attackRate) {
 		int diceResult = Dice.roll10();
 		if (diceResult==1) {
-			AttackChoiceStrategy.ATTACK_CRITICAL_SUCCESS.attack(player , target);
+			return AttackChoiceStrategy.ATTACK_CRITICAL_SUCCESS;
 		}else if(diceResult <= attackRate) {
-			AttackChoiceStrategy.ATTACK_SUCCESS.attack(player , target);
+			return AttackChoiceStrategy.ATTACK_SUCCESS;
 		}else if(diceResult < 10) {
-			AttackChoiceStrategy.ATTACK_FAILURE.attack(player , target);
+			return  AttackChoiceStrategy.ATTACK_FAILURE;
 		}else {
-			AttackChoiceStrategy.ATTACK_CRITICAL_FAILURE.attack(player , target);
+			return AttackChoiceStrategy.ATTACK_CRITICAL_FAILURE;
 		}
+	}
+	/**créer une seconde méthode qui sépare les if else, des appels de la stratégie*/
+	public  void attemptAttack(int attackRate, InterfaceCharacters player, InterfaceCharacters target) {
+		AttackChoiceStrategy attackType = selectAttack(attackRate);
+		attackType.attack(player, target);
 	}
 
 

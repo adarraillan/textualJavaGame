@@ -111,13 +111,10 @@ public final class Warrior implements Hero {
 
 	}
 
-	@Override
-	public int getDamage() {
-		return 0;
-	}
 
-	public void getDamage(int damage) {
-		this.damage = damage;
+
+	public int getDamage() {
+		return damage;
 	}
 
 	public void setDamage(int damage) {
@@ -131,7 +128,7 @@ public final class Warrior implements Hero {
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 		//warrior attempt attack to target
 		//AttemptAttack attack = new AttemptAttack(attackRate, target);
-		AttemptAttack.attemptAttack(attackRate, this, target);
+		new AttemptAttack().attemptAttack(attackRate, this, target);
 
 
 	}

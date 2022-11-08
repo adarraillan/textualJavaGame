@@ -139,7 +139,7 @@ public class SkeletonArcher implements Skeleton  {
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 		//warrior attempt attack to target
 		//AttemptAttack attack = new AttemptAttack(attackRate, target);
-		AttemptAttack.attemptAttack(attackRate, this, target);
+		new AttemptAttack().attemptAttack(attackRate, this, target);
 
 
 	}
