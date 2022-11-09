@@ -2,11 +2,12 @@ package dices;
 
 import characters.Wizard;
 import characters.ZombieNazi;
-import org.junit.Test;
-import org.junit.Before; 
 import org.junit.After;
-import org.mockito.Mock;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
+
+import static org.junit.Assert.assertTrue;
 
 /** 
 * AttemptAttack Tester. 
@@ -37,16 +38,16 @@ public void testAttemptAttack() throws Exception {
                                         .attackRate(5)
                                         .defenseRate(5)
                                         .damage(7)
-                                        .lifePoints(7)
-                                        .maxLifePoints(7)
+                                        .lifePoints(100)
+                                        .maxLifePoints(100)
                                         .build();
 
     ZombieNazi target = new ZombieNazi.Builder()
                                         .attackRate(5)
                                         .defenseRate(5)
                                         .damage(7)
-                                        .lifePoints(7)
-                                        .speedPoints(5)
+                                        .lifePoints(100)
+                                        .speedPoints(100)
                                         .dialogue()
                                         .build();
 
@@ -56,7 +57,7 @@ public void testAttemptAttack() throws Exception {
     //when
     attack.attemptAttack(player.getAttackRate(), player, target);
     //then
-    assert
+    assertTrue(player.getLifePoints() <= 100 && target.getLifePoints() >= 90);
 } 
 
 

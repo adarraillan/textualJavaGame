@@ -1,7 +1,7 @@
 package characters;
 
-import dices.*;
-import java.lang.Math;
+import dices.AttemptAttack;
+import dices.AttemptDefense;
 
 public final class Warrior implements Hero {
 	private final static int ARMOR = 3; 
@@ -54,11 +54,7 @@ public final class Warrior implements Hero {
 		}
 
 		public Builder damage(final int damage) {
-			/*if Integer.NaN(damage) || damage <0 {
-				this.damage = 0;
-			} else {
-				this.damage = damage;
-			}*/
+
 			this.damage = damage;
 			return this;
 		}
@@ -93,6 +89,16 @@ public final class Warrior implements Hero {
 		this.defenseRate = defenseRate;
 	}
 
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+
+		this.damage = damage;
+
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -113,15 +119,7 @@ public final class Warrior implements Hero {
 
 
 
-	public int getDamage() {
-		return damage;
-	}
 
-	public void setDamage(int damage) {
-
-		this.damage = damage;
-
-	}
 
 	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
 
@@ -188,7 +186,7 @@ public final class Warrior implements Hero {
 	public String toStringName() {
 		return (""+ this.name );
 	}
-	
+
 	public void selectAspect() {
 		
 	}
