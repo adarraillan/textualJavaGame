@@ -1,3 +1,5 @@
+package characters;
+
 import characters.Warrior;
 
 import org.junit.After;
@@ -10,18 +12,18 @@ import static org.junit.Assert.assertTrue;
 /** 
 * Warrior Tester. 
 * 
-* @author <Authors name> 
+* @author <Adrien Darraillan>
 * @since <pre>Nov 7, 2022</pre> 
 * @version 1.0 
 */ 
 public class WarriorTest { 
 
 @Before
-public void before() throws Exception { 
+public void before(){
 } 
 
 @After
-public void after() throws Exception { 
+public void after(){
 } 
 
 /** 
@@ -30,7 +32,7 @@ public void after() throws Exception {
 * 
 */ 
 @Test
-public void testGetAttackRate() throws Exception {
+public void testGetAttackRate(){
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -45,7 +47,7 @@ public void testGetAttackRate() throws Exception {
 * 
 */ 
 @Test
-public void testSetAttackRate() throws Exception { 
+public void testSetAttackRate(){
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -61,7 +63,7 @@ public void testSetAttackRate() throws Exception {
 * 
 */ 
 @Test
-public void testGetDefenseRate() throws Exception {
+public void testGetDefenseRate(){
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -76,7 +78,7 @@ public void testGetDefenseRate() throws Exception {
 * 
 */ 
 @Test
-public void testSetDefenseRate() throws Exception {
+public void testSetDefenseRate(){
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -92,7 +94,7 @@ public void testSetDefenseRate() throws Exception {
 * 
 */ 
 @Test
-public void testGetName() throws Exception {
+public void testGetName(){
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -107,7 +109,7 @@ public void testGetName() throws Exception {
 * 
 */ 
 @Test
-public void testSetName() throws Exception {
+public void testSetName() {
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -123,7 +125,7 @@ public void testSetName() throws Exception {
 * 
 */ 
 @Test
-public void testGetLifePoints() throws Exception {
+public void testGetLifePoints(){
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -138,7 +140,7 @@ public void testGetLifePoints() throws Exception {
 * 
 */ 
 @Test
-public void testSetLifePoints() throws Exception {
+public void testSetLifePoints(){
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -153,7 +155,7 @@ public void testSetLifePoints() throws Exception {
 * 
 */ 
 @Test
-public void testGetDamage() throws Exception {
+public void testGetDamage(){
     //given
     Warrior.Builder builder = new Warrior.Builder();
     //when
@@ -183,7 +185,7 @@ public void testSetDamage(){
 * 
 */ 
 @Test
-public void testAttackAttempt() throws Exception {
+public void testAttackAttempt(){
     //given
     Warrior warrior = new Warrior.Builder().name("warrior").attackRate(10).defenseRate(10).lifePoints(100).damage(5).build();
     Warrior target = new Warrior.Builder().name("target").attackRate(10).defenseRate(10).lifePoints(100).damage(5).build();
@@ -201,9 +203,8 @@ public void testAttackAttempt() throws Exception {
 * 
 */ 
 @Test
-public void testDefenseAttempt() throws Exception { 
-    //test defenseAttempt
-    //given
+public void testDefenseAttempt(){
+     //given
     Warrior warrior = new Warrior.Builder().name("warrior").attackRate(10).defenseRate(10).lifePoints(100).damage(5).build();
     //when
     warrior.defenseAttempt(warrior.getDefenseRate(), 5);
@@ -218,9 +219,8 @@ public void testDefenseAttempt() throws Exception {
 * 
 */ 
 @Test
-public void testAttackSuccess() throws Exception { 
-    //test attackSuccess
-    //given
+public void testAttackSuccess(){
+     //given
     Warrior warrior = new Warrior.Builder().name("warrior")
                                             .attackRate(10)
                                             .defenseRate(10)
@@ -245,14 +245,13 @@ public void testAttackSuccess() throws Exception {
 * 
 */ 
 @Test
-public void testDefenseSuccess() throws Exception { 
-    //test defenseSuccess
-    //given
+public void testDefenseSuccess(){
+     //given
     Warrior warrior = new Warrior.Builder().name("warrior").attackRate(10).defenseRate(10).lifePoints(100).damage(5).build();
     //when
     warrior.defenseSuccess(5);
     //then
-    assertTrue(warrior.getLifePoints() <= 99 && warrior.getLifePoints() >= 97);
+    assertTrue(warrior.getLifePoints() <= 100 && warrior.getLifePoints() >= 97);
 
 } 
 
@@ -262,24 +261,25 @@ public void testDefenseSuccess() throws Exception {
 * 
 */ 
 @Test
-public void testAttackCriticalSuccess() throws Exception {
+public void testAttackCriticalSuccess(){
     //given
     Warrior warrior = new Warrior.Builder().name("warrior")
-                                            .attackRate(10)
-                                            .defenseRate(10)
+                                            .attackRate(5)
+                                            .defenseRate(5)
                                             .lifePoints(100)
                                             .damage(5)
                                             .build();
     Warrior target = new Warrior.Builder().name("target")
-                                            .attackRate(10)
-                                            .defenseRate(10)
+                                            .attackRate(5)
+                                            .defenseRate(5)
                                             .lifePoints(100)
                                             .damage(5)
                                             .build();
     //when
     warrior.attackSuccess(target, 5);
     //then
-    assertTrue(target.getDefenseRate() == 5 && warrior.getDamage() == 5);
+    assertTrue(target.getDefenseRate() == 5 && warrior.getDamage() == 5
+               && target.getLifePoints() <= 100 && target.getLifePoints() >= 80);
 }
 
 /** 
@@ -288,7 +288,7 @@ public void testAttackCriticalSuccess() throws Exception {
 * 
 */ 
 @Test
-public void testDefenseCriticalSuccess() throws Exception {
+public void testDefenseCriticalSuccess(){
     //given
     Warrior target = new Warrior.Builder().name("target")
                                             .attackRate(10)
@@ -309,7 +309,7 @@ public void testDefenseCriticalSuccess() throws Exception {
 * 
 */ 
 @Test
-public void testAttackFailure() throws Exception {
+public void testAttackFailure(){
     //given
     Warrior warrior = new Warrior.Builder().name("warrior")
                                             .attackRate(10)
@@ -337,14 +337,18 @@ public void testAttackFailure() throws Exception {
 * 
 */ 
 @Test
-public void testDefenseFailure() throws Exception { 
-    //test defenseFailure
-    //given
-    Warrior warrior = new Warrior.Builder().name("warrior").attackRate(10).defenseRate(10).lifePoints(100).damage(5).build();
+public void testDefenseFailure(){
+     //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
     //when
     warrior.defenseFailure(5);
     //then
-    assertTrue(warrior.getLifePoints() <= 95 && warrior.getLifePoints() >= 93);
+    assertTrue(warrior.getLifePoints() <= 100 && warrior.getLifePoints() >= 90);
 }
 
 /** 
@@ -353,8 +357,19 @@ public void testDefenseFailure() throws Exception {
 * 
 */ 
 @Test
-public void testAttackCriticalFailure() throws Exception { 
-//TODO: Test goes here... 
+public void testAttackCriticalFailure(){
+    //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+            .attackRate(10)
+            .defenseRate(10)
+            .lifePoints(100)
+            .damage(5)
+            .build();
+    //when
+    int warriorLifePoints = warrior.getLifePoints();
+    warrior.attackCriticalFailure();
+    //then
+    assertEquals(warriorLifePoints- 3, warrior.getLifePoints());
 } 
 
 /** 
@@ -363,9 +378,20 @@ public void testAttackCriticalFailure() throws Exception {
 * 
 */ 
 @Test
-public void testDefenseCriticalFailure() throws Exception { 
-//TODO: Test goes here... 
-} 
+public void testDefenseCriticalFailure(){
+    //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+            .attackRate(10)
+            .defenseRate(10)
+            .lifePoints(100)
+            .damage(5)
+            .build();
+    //when
+    int warriorLifePoints = warrior.getLifePoints();
+    warrior.defenseCriticalFailure(5);
+    //then
+    assertEquals(warrior.getLifePoints(), warriorLifePoints - 10);
+}
 
 /** 
 * 
@@ -373,8 +399,19 @@ public void testDefenseCriticalFailure() throws Exception {
 * 
 */ 
 @Test
-public void testTakeDamage() throws Exception { 
-//TODO: Test goes here... 
+public void testTakeDamage(){
+     //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    int warriorLifePoints = warrior.getLifePoints();
+    warrior.takeDamage(5);
+    //then
+    assertEquals(warriorLifePoints - 5, warrior.getLifePoints());
 } 
 
 /** 
@@ -383,8 +420,18 @@ public void testTakeDamage() throws Exception {
 * 
 */ 
 @Test
-public void testToStringHP() throws Exception { 
-//TODO: Test goes here... 
+public void testToStringHP(){
+     //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    String warriorHP = warrior.toStringHP();
+    //then
+    assertEquals("100", warriorHP);
 } 
 
 /** 
@@ -393,19 +440,21 @@ public void testToStringHP() throws Exception {
 * 
 */ 
 @Test
-public void testToStringName() throws Exception { 
-//TODO: Test goes here... 
-} 
+public void testToStringName(){
+     //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    String warriorName = warrior.toStringName();
+    //then
+    assertEquals("warrior", warriorName);
+}
 
-/** 
-* 
-* Method: selectAspect() 
-* 
-*/ 
-@Test
-public void testSelectAspect() throws Exception { 
-//TODO: Test goes here... 
-} 
+
 
 /** 
 * 
@@ -413,8 +462,18 @@ public void testSelectAspect() throws Exception {
 * 
 */ 
 @Test
-public void testAttackRate() throws Exception { 
-//TODO: Test goes here... 
+public void testAttackRate(){
+     //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    int warriorAttackRate = warrior.getAttackRate();
+    //then
+    assertEquals(10, warriorAttackRate);
 } 
 
 /** 
@@ -423,8 +482,19 @@ public void testAttackRate() throws Exception {
 * 
 */ 
 @Test
-public void testDefenseRate() throws Exception { 
-//TODO: Test goes here... 
+public void testDefenseRate(){
+     //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    int warriorDefenseRate = warrior.getDefenseRate();
+    //then
+    assertEquals(10, warriorDefenseRate);
+
 } 
 
 /** 
@@ -433,8 +503,18 @@ public void testDefenseRate() throws Exception {
 * 
 */ 
 @Test
-public void testLifePoints() throws Exception { 
-//TODO: Test goes here... 
+public void testLifePoints(){
+     //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    int warriorLifePoints = warrior.getLifePoints();
+    //then
+    assertEquals(100, warriorLifePoints);
 } 
 
 /** 
@@ -443,8 +523,18 @@ public void testLifePoints() throws Exception {
 * 
 */ 
 @Test
-public void testMaxLifePoints() throws Exception { 
-//TODO: Test goes here... 
+public void testMaxLifePoints(){
+    //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    int warriorMaxLifePoints = warrior.getMaxLifePoints();
+    //then
+    assertEquals(100, warriorMaxLifePoints);
 } 
 
 /** 
@@ -453,8 +543,19 @@ public void testMaxLifePoints() throws Exception {
 * 
 */ 
 @Test
-public void testDamage() throws Exception { 
-//TODO: Test goes here... 
+public void testDamage(){
+    //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    int warriorDamage = warrior.getDamage();
+    //then
+    assertEquals(5, warriorDamage);
+
 } 
 
 /** 
@@ -463,8 +564,18 @@ public void testDamage() throws Exception {
 * 
 */ 
 @Test
-public void testName() throws Exception { 
-//TODO: Test goes here... 
+public void testName(){
+    //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    String warriorName = warrior.getName();
+    //then
+    assertEquals("warrior", warriorName);
 } 
 
 /** 
@@ -473,9 +584,29 @@ public void testName() throws Exception {
 * 
 */ 
 @Test
-public void testBuild() throws Exception { 
-//TODO: Test goes here... 
-} 
+public void testBuild(){
+    //given
+    Warrior warrior = new Warrior.Builder().name("warrior")
+                                           .attackRate(10)
+                                           .defenseRate(10)
+                                           .lifePoints(100)
+                                           .damage(5)
+                                           .build();
+    //when
+    String warriorName = warrior.getName();
+    int warriorAttackRate = warrior.getAttackRate();
+    int warriorDefenseRate = warrior.getDefenseRate();
+    int warriorLifePoints = warrior.getLifePoints();
+    int warriorMaxLifePoints = warrior.getMaxLifePoints();
+    int warriorDamage = warrior.getDamage();
+    //then
+    assertEquals("warrior", warriorName);
+    assertEquals(10, warriorAttackRate);
+    assertEquals(10, warriorDefenseRate);
+    assertEquals(100, warriorLifePoints);
+    assertEquals(100, warriorMaxLifePoints);
+    assertEquals(5, warriorDamage);
+}
 
 
-} 
+}

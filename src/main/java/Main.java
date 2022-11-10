@@ -37,7 +37,7 @@ public class Main {
 			System.out.println("Ganon est décédé ("+ganon.toStringHP()+"), et il reste " + link.toStringHP() + " HP à Link");
 		}
 		
-		
+		System.out.println(link.getName());
 		/*SkeletonArcher skel = new SkeletonArcher.Builder().attackRate(1).defenseRate(0).speedPoints(0).lifePoints(0).dialogue().build();
 		System.out.println(skel.getdialogue());
 

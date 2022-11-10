@@ -3,8 +3,6 @@ package characters;
 import dices.*;
 
 public class Wizard implements Hero{
-	
-	private final static int DAMAGE = 5;
 	private final static int ARMOR = 3; 
 	
 	private int attackRate;
@@ -14,15 +12,7 @@ public class Wizard implements Hero{
 	private String name;
     private int damage;
 
-    //Pattern builder to avoid to much parameters
-	/**public Warrior(int attackRate, int defenseRate, int lifePoints, int maxLifePoints, String name){ 
-		this.attackRate = attackRate;
-		this.defenseRate = defenseRate;
-		this.lifePoints = lifePoints;
-		this.maxLifePoints = maxLifePoints;
-		this.name = name;
-	}*/
-	
+
 	private Wizard(Builder builder) {
 		this.attackRate = builder.attackRate;
 		this.defenseRate = builder.defenseRate;
@@ -31,7 +21,7 @@ public class Wizard implements Hero{
 		this.damage = builder.damage;
 		this.name = builder.name;
 	}
-	
+
 
 	public static class Builder{
 		
@@ -112,6 +102,14 @@ public class Wizard implements Hero{
 		this.lifePoints = lifePoints;
 	}
 
+	public int getMaxLifePoints() {
+		return maxLifePoints;
+	}
+
+	public void setMaxLifePoints(int lifePoints) {
+		this.maxLifePoints = lifePoints;
+	}
+
 	public int getDamage() {return damage;}
 
 	public void setDamage(int damage) {this.damage = damage;}
@@ -140,7 +138,7 @@ public class Wizard implements Hero{
 	}
 
 	public void defenseSuccess(int damageTaken) {
-		this.takeDamage(damageTaken - ARMOR - dices.Dice.roll2());
+		this.takeDamage(damageTaken - ARMOR - Dice.roll2());
 	}
 
 	public void attackCriticalSuccess(final InterfaceCharacters target, int damage) {

@@ -9,7 +9,7 @@ public final class Warrior implements Hero {
 	private int attackRate;
 	private int defenseRate;
 	private int lifePoints;
-	private final int maxLifePoints;
+	private int maxLifePoints;
 	private int damage;
 	private String name;
 
@@ -111,17 +111,20 @@ public final class Warrior implements Hero {
 		return lifePoints;
 	}
 
+	@Override
 	public void setLifePoints(int lifePoints) {
-
 		this.lifePoints = lifePoints;
-
 	}
 
+	public int getMaxLifePoints() {
+		return maxLifePoints;
+	}
 
+	public void setMaxLifePoints(int maxLifePoints) {
 
+		this.maxLifePoints = maxLifePoints;
 
-
-	//TODO type d'attaque, Design pattern/strat pour éviter elif,switch avec enum
+	}
 
 	public void attackAttempt(int attackRate, final InterfaceCharacters target) {
 		//warrior attempt attack to target
@@ -149,7 +152,7 @@ public final class Warrior implements Hero {
 	}
 	
 	public void attackCriticalSuccess(final InterfaceCharacters target, int damage) {
-		target.defenseAttempt(target.getDefenseRate()/2, this.damage);
+		target.defenseAttempt(target.getDefenseRate(), this.damage*2);
 	}
 	
 	public void defenseCriticalSuccess() {

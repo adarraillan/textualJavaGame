@@ -1,5 +1,6 @@
 package dices;
 
+
 import characters.Wizard;
 import characters.ZombieNazi;
 import org.junit.After;
@@ -19,11 +20,11 @@ import static org.junit.Assert.assertTrue;
 public class AttemptAttackTest { 
 
 @Before
-public void before() throws Exception { 
+public void before(){
 } 
 
 @After
-public void after() throws Exception { 
+public void after(){
 } 
 
 /** 
@@ -32,7 +33,7 @@ public void after() throws Exception {
 * 
 */ 
 @Test
-public void testAttemptAttack() throws Exception { 
+public void testAttemptAttack(){
     //given
     Wizard player = new Wizard.Builder()
                                         .attackRate(5)
